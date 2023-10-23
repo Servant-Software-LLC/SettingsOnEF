@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <PackageId>ServantSoftware.SettingsOnEF.Json</PackageId>
+    <Title>ServantSoftware.SettingsOnEF</Title>
+    <Product>A JSON EF Core extension for centralizing application settings in the database. Each setting class corresponds to a table, with each table having a single-row configuration.</Product>
+    <PackageReadmeFile>README.Json.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.Json.md" Link="README.Json.md" Pack="true" PackagePath="\" />
+
+    <ProjectReference Include="..\SettingsOnEF\SettingsOnEF.csproj" />
+	  
+	<PackageReference Include="ServantSoftware.EFCore.Json" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <PackageId>ServantSoftware.SettingsOnEF</PackageId>
+    <Title>ServantSoftware.SettingsOnEF</Title>
+    <Product>An EF Core extension for centralizing application settings in the database. Each setting class corresponds to a table, with each table having a single-row configuration.</Product>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Link="README.md" Pack="true" PackagePath="\" />
+	  
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SettingsOnEF.Common\SettingsOnEF.Common.csproj" />
+  </ItemGroup>
+
+</Project>

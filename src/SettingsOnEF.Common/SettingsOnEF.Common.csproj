@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+	<!-- Targeting .NET Standard 2.0, so this project can be used by Source Generators - https://learn.microsoft.com/en-us/dotnet/csharp/roslyn-sdk/source-generators-overview-->
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>10.0</LangVersion>
+    <PackageId>ServantSoftware.SettingsOnEF.Common</PackageId>
+    <Title>ServantSoftware.SettingsOnEF.Common</Title>
+    <Product>An EF Core extension for centralizing application settings in the database. Each setting class corresponds to a table, with each table having a single-row configuration.</Product>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+	
+  <ItemGroup>
+    <None Include="..\..\README.md" Link="README.md" Pack="true" PackagePath="\" />
+  </ItemGroup>
+
+</Project>

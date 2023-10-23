@@ -1,11 +1,8 @@
-# ServantSoftware.SettingsOnEF
+# ServantSoftware.SettingsOnEF.Json
 
 An EF Core extension for centralizing application settings in the database. Each setting class corresponds to a table, with each table having a single-row configuration.
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Version](https://img.shields.io/badge/version-1.0.0-blue) ![License](https://img.shields.io/badge/license-MIT-green)
-![Nuget](https://img.shields.io/nuget/v/ServantSoftware.EFCore.Json)
-
-A specialized [JSON settings manager](README.Json.md) uses the [JSON EF Core Provider](https://github.com/Servant-Software-LLC/FileBased.DataProviders/blob/main/README.EFCore.Json.md)
 
 ## Table of Contents
 
@@ -26,21 +23,19 @@ A specialized [JSON settings manager](README.Json.md) uses the [JSON EF Core Pro
 ### Prerequisites
 
 - .NET 7 or higher
-- An existing EF Core provider to use for storage
+- An existing EF Core project
 
 ### Installation
 
-1. Install the `ServantSoftware.SettingsOnEF` package via NuGet:
+1. Install the `ServantSoftware.SettingsOnEF.Json` package via NuGet:
 
 ```
-dotnet add package ServantSoftware.SettingsOnEF
+dotnet add package ServantSoftware.SettingsOnEF.Json
 ```
 
 | Package Name                   | Release (NuGet) |
 |--------------------------------|-----------------|
-| `ServantSoftware.SettingsOnEF.Common`       | [![NuGet](https://img.shields.io/nuget/v/ServantSoftware.SettingsOnEF.Common.svg)](https://www.nuget.org/packages/ServantSoftware.SettingsOnEF.Common/)
-| `ServantSoftware.SettingsOnEF`       | [![NuGet](https://img.shields.io/nuget/v/ServantSoftware.SettingsOnEF.svg)](https://www.nuget.org/packages/ServantSoftware.SettingsOnEF/)
-
+| `ServantSoftware.SettingsOnEF.Json`       | [![NuGet](https://img.shields.io/nuget/v/ServantSoftware.SettingsOnEF.Json.svg)](https://www.nuget.org/packages/ServantSoftware.SettingsOnEF.Json/)
 
 ### Usage
 1. Define your settings class and mark it with the SettingsEntity attribute. Here is an example:
@@ -53,15 +48,18 @@ public class SomeSetting
     public string SomeProperty { get; set; }
 }
 ```
-2. Use the Get and Update methods from SettingsManager to retrieve and update settings:
+2. Use the Get and Update methods from JsonSettingsManager to retrieve and update settings:
 ```csharp
-var settingsManager = new SettingsManager(contextBuilder => contextBuilder.UseSqlite($"Data Source=InMemorySample;Mode=Memory;Cache=Shared"));
+var settingsManager = new JsonSettingsManager("MyCompanyName", "MyProductName");
 
 var setting = settingsManager.Get<SomeSetting>();
 setting.SomeProperty = "NewValue";
 settingsManager.Update(setting);
 ```
-
+Your application settings will be stored under [Environment.SpecialFolder](https://learn.microsoft.com/en-us/dotnet/api/system.environment.specialfolder?view=net-7.0).CommonApplicationData.  For example on Windows, the default location in this sample will be:
+```
+C:\ProgramData\MyCompanyName\MyProductName\Settings
+```
 For more detailed documentation, check our [Wiki](#).
 
 ## Contributing
@@ -79,7 +77,7 @@ Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details on the process an
 
 ### Issues
 
-Feel free to submit issues and enhancement requests.
+Feel free to [submit issues and enhancement requests](https://github.com/Servant-Software-LLC/SettingsOnEF/issues).
 
 ## License
 
