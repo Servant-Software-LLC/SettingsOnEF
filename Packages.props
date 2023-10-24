@@ -7,7 +7,7 @@
     <PackageReference Update="Microsoft.EntityFrameworkCore.Relational" Version="$(EFCoreVersion)" />
 
     <!-- With the JSON FileBased Provider -->
-	<PackageReference Update="ServantSoftware.EFCore.Json" Version="1.0.0.202" />
+	<PackageReference Update="ServantSoftware.EFCore.Json" Version="1.0.0.233" />
 	  
     <!-- Unit Tests -->
 	<PackageReference Update="FluentAssertions" Version="6.11.0" />
