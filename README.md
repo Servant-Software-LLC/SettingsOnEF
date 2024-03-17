@@ -77,6 +77,30 @@ We welcome contributions to SettingsOnEF! Here's how you can help:
 
 Please read our [CONTRIBUTING.md](CONTRIBUTING.md) for details on the process and coding standards.
 
+## Thread Safety Policy
+
+SettingsOnEF leverages Entity Framework Core (EF Core) for managing application settings storage. It's important to note that `DbContext`, a fundamental part of EF Core, is not thread-safe. This means that instances of `DbContext`, and by extension, instances of `SettingsManager` and `JsonSettingsManager` provided by SettingsOnEF, should not be accessed concurrently from multiple threads. 
+
+### Responsibilities of the Consumer
+
+To ensure the integrity and reliability of your application, it is the consumer's responsibility to manage the thread-safe usage of SettingsOnEF. Here are some guidelines to help you avoid common pitfalls related to threading:
+
+- **Scoped Instances**: In web applications, particularly those built with ASP.NET Core, utilize dependency injection to create scoped instances of `SettingsManager` or `JsonSettingsManager`. This ensures that each HTTP request receives its instance, effectively isolating individual requests from one another.
+
+- **Synchronization**: For applications where SettingsOnEF might be accessed concurrently in a multi-threaded scenario, implement appropriate synchronization mechanisms. For example, you can use locks, `SemaphoreSlim`, or other synchronization primitives to control access to SettingsOnEF instances. This is crucial for batch operations, background services, or any application part that runs in parallel threads.
+
+- **Immutable Settings Patterns**: Consider adopting a pattern where settings are loaded once at the beginning of an operation and treated as read-only for the duration of that operation. This approach can reduce the need for synchronization but requires a design that accommodates potentially stale settings if they are updated while the application is running.
+
+### Not Recommended Practices
+
+- **Singleton Pattern**: Avoid using a single, application-wide instance of `SettingsManager` or `JsonSettingsManager` without proper synchronization, as this can lead to data corruption and concurrency exceptions.
+
+- **Static Access**: Similarly, static methods or properties that internally use a shared `DbContext` instance should be avoided unless they are designed to handle concurrent access securely.
+
+### Conclusion
+
+By adhering to these guidelines and designing your application with thread safety in mind, you can effectively mitigate concurrency-related issues while using SettingsOnEF. Remember, managing thread safety is a shared responsibility between the library and its consumers. If your application scenario requires concurrent access to SettingsOnEF, planning and implementing a thread-safe strategy is essential for maintaining data integrity and application stability.
+
 ### Issues
 
 Feel free to submit issues and enhancement requests.
