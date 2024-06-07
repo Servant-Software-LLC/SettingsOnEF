@@ -1,8 +1,9 @@
 # ServantSoftware.SettingsOnEF.Json
 
-An EF Core extension for centralizing application settings in the database. Each setting class corresponds to a table, with each table having a single-row configuration.
+An EF Core extension for centralizing application settings in JSON files. Each setting class corresponds to a table, with each table having a single-row configuration.
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Version](https://img.shields.io/badge/version-1.0.0-blue) ![License](https://img.shields.io/badge/license-MIT-green)
+![Nuget](https://img.shields.io/nuget/v/ServantSoftware.SettingsOnEF.Json)
 
 ## Table of Contents
 

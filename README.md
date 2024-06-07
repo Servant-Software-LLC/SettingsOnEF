@@ -3,7 +3,7 @@
 An EF Core extension for centralizing application settings in the database. Each setting class corresponds to a table, with each table having a single-row configuration.
 
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen) ![Version](https://img.shields.io/badge/version-1.0.0-blue) ![License](https://img.shields.io/badge/license-MIT-green)
-![Nuget](https://img.shields.io/nuget/v/ServantSoftware.EFCore.Json)
+![Nuget](https://img.shields.io/nuget/v/ServantSoftware.SettingsOnEF)
 
 A specialized [JSON settings manager](README.Json.md) uses the [JSON EF Core Provider](https://github.com/Servant-Software-LLC/FileBased.DataProviders/blob/main/README.EFCore.Json.md)
 
